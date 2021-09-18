@@ -23,9 +23,14 @@ export const Header: React.FC = () => {
 
         </span>
 
-        <Button onClick={()=>history.push("/")}>Home</Button>
+        <div className={styles["menu-item"]} onClick={()=>history.push("/")}>Home</div>
+        <div className={styles["menu-item"]} onClick={()=>history.push("/create")}>Create</div>
+        <div className={styles["menu-item"]} onClick={()=>history.push("/evolve")}>Evolve</div>
+        <div className={styles["menu-item"]} onClick={()=>history.push("/evolve")}>Connect</div>
+
+        {/* <Button onClick={()=>history.push("/")}>Home</Button>
         <Button onClick={()=>history.push("/create")}>Create</Button>
-        <Button onClick={()=>history.push("/evolve")}>Evolve</Button>
+        <Button onClick={()=>history.push("/evolve")}>Evolve</Button> */}
         
       </Layout.Header>
     </div>
