@@ -13,12 +13,22 @@ export const CreatePage: React.FC = () => {
 
   // 接收一个 web3 addresss:
   const address = "0xbC108A8Cc826784dC2F98003392180d1ac9EAa9b"
+
   // 分片
   const color01 = parseInt(address.slice(2,8),16)
   const color02 = parseInt(address.slice(8,14),16)
   const color03 = parseInt(address.slice(14,20),16)
   const color04 = parseInt(address.slice(20,26),16)
   const color05 = parseInt(address.slice(26,32),16)
+  const color06 = parseInt(address.slice(32,38),16)
+
+  const color01str = address.slice(2,8)
+  const color02str = address.slice(8,14)
+  const color03str = address.slice(14,20)
+  const color04str = address.slice(20,26)
+  const color05str = address.slice(26,32)
+  const color06str = address.slice(32,38)
+
   // load 模型
   const crystal_center = useLoader(GLTFLoader, './forWeb/crystal_center.gltf')
   const crystal_fly = useLoader(GLTFLoader, './forWeb/crystal_fly.gltf')
@@ -93,6 +103,7 @@ export const CreatePage: React.FC = () => {
             Evolve
           </div>
         </div>
+        <div>Meta Data: 0x {color01str} <span>{color02str}</span> {color03str} {color04str} {color05str} {color06str} </div>
       </div>
     </>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Row, Col, Typography } from "antd";
 import styles from "./HomePage.module.css";
 import {Header } from "../../components";
 
@@ -15,7 +14,7 @@ export class HomePage extends React.Component {
           style={{ 
             backgroundImage: `url("./homebg.jpg")`, 
             backgroundRepeat: 'no-repeat', 
-            backgroundSize: 'cover',
+            backgroundSize: 'contain',
             backgroundPosition: 'center center' }}>
         </div>
       </>

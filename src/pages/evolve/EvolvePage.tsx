@@ -1,6 +1,4 @@
 import React from "react";
-
-import { Row, Col, Typography } from "antd";
 import styles from "./EvolvePage.module.css";
 import {Header} from "../../components";
 
