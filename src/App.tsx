@@ -3,10 +3,11 @@ import styles from "./App.module.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { HomePage, CreatePage, EvolvePage } from "./pages";
 import { Header } from "./components";
+// import background from "./bg.jpg";
 
 function App() {
   return (
-    <div className={styles.App}>
+    <div className={styles.App} style={{ backgroundImage: `url("./bg.jpg")` }}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={HomePage} />
