@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Header.module.css";
-import { Layout, Typography, Input, Menu, Button, Dropdown } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import { useHistory, useLocation, useParams, useRouteMatch } from "react-router-dom";
 
@@ -11,28 +10,50 @@ export const Header: React.FC = () => {
   const location = useLocation();
   const params = useParams();
   const match = useRouteMatch();
+  const address = "0xbC108A8Cc826784dC2F98003392180d1ac9EAa9b"
+
+  const addressText = address.substring(0, 10)+"..."
+
+  const ethEnabled = async () => {
+    // if (typeof window.ethereum !== 'undefined') {
+    //     // Instance web3 with the provided information from the MetaMask provider information
+    //     this.web3 = new Web3(window.ethereum);
+    //     try {
+    //         // Request account access
+    //         await window.ethereum.enable();
+    //         return true
+    //     } catch (e) {
+    //         // User denied access
+    //         return false
+    //     }
+    // }
+    return false;
+  }
+
   return (
-    <div className={styles["app-header"]}>
-      <Layout.Header className={styles["main-header"]}>
-        <span onClick={() => history.push("/")}>
+    <div className={styles["header"]}>
+      <div className={styles["header-main"]}>
+        <div onClick={() => history.push("/")} className={styles["header-logo"]}>
           <img src='./rockslogo2.svg' height='50px' alt="logo"  />
-          
-          <Typography.Title level={3} className={styles.title}>
+          <h3 className={styles["header-title"]}>
             METAROCKS
-          </Typography.Title>
+          </h3>
+        </div>
 
-        </span>
+        <div style={{width: '50%', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
+          <span className={styles["menu-container"]}>
+            <div className={styles["menu-item"]} onClick={()=>history.push("/")}>Home</div>
+            <div className={styles["menu-item"]} onClick={()=>history.push("/create")}>Create</div>
+            <div className={styles["menu-item"]} onClick={()=>history.push("/evolve")}>Evolve</div>
+            {/* <div className={styles["menu-item"]} onClick={()=>history.push("/evolve")}>Connect</div> */}
+          </span>
 
-        <div className={styles["menu-item"]} onClick={()=>history.push("/")}>Home</div>
-        <div className={styles["menu-item"]} onClick={()=>history.push("/create")}>Create</div>
-        <div className={styles["menu-item"]} onClick={()=>history.push("/evolve")}>Evolve</div>
-        <div className={styles["menu-item"]} onClick={()=>history.push("/evolve")}>Connect</div>
-
-        {/* <Button onClick={()=>history.push("/")}>Home</Button>
-        <Button onClick={()=>history.push("/create")}>Create</Button>
-        <Button onClick={()=>history.push("/evolve")}>Evolve</Button> */}
-        
-      </Layout.Header>
+          <div className={styles["address-block"]}>
+            { addressText }
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
+//address.substring(0, 10)+"..."
