@@ -11,9 +11,13 @@ export class HomePage extends React.Component {
       <>
         <Header />
         {/* 页面内容 content */}
-        <div className={styles["page-content"]}>
+        <div className={styles["page-content"]}
+          style={{ 
+            backgroundImage: `url("./homebg.jpg")`, 
+            backgroundRepeat: 'no-repeat', 
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center' }}>
         </div>
-
       </>
     );
   }

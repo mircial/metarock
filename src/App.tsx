@@ -7,7 +7,7 @@ import { Header } from "./components";
 
 function App() {
   return (
-    <div className={styles.App} style={{ backgroundImage: `url("./bg.jpg")` }}>
+    <div className={styles.App} >
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={HomePage} />

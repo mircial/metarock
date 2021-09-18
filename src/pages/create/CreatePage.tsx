@@ -53,7 +53,8 @@ export const CreatePage: React.FC = () => {
   crystal_right_top.scene.traverse((o) => {
     if (o.isMesh) o.material = newMaterial05;
   });
-
+  
+  const scale=0.6
 
   // useFrame((state, delta) => ((ref.current as THREE.Scene).rotation.x += 0.01))
   /**
@@ -63,23 +64,34 @@ export const CreatePage: React.FC = () => {
     <>
       <Header />
       {/* 页面内容 content */}
-      <div className={styles["page-content"]}>
-        <Canvas>
+      <div className={styles["page-content"]}
+        style={{ 
+          backgroundImage: `url("./bg.jpg")`, 
+          backgroundSize: 'autofit',
+          backgroundRepeat: 'no-repeat' }}
+      >
+        <div style={{height: '70%'}}>
+          <Canvas>
           <ambientLight />
-          <pointLight position={[10, 10, 10]} scale={0.5}/>
-              <primitive object={crystal_center.scene} rotation-y={-Math.PI} scale={0.5}/>
-              <primitive object={crystal_fly.scene} rotation-y={-Math.PI} scale={0.5}/>
-              <primitive object={crystal_left_bottom.scene} rotation-y={-Math.PI} scale={0.5}/>
-              <primitive object={crystal_left_top.scene} rotation-y={-Math.PI} scale={0.5}/>
-              <primitive object={crystal_right_bottom.scene} rotation-y={-Math.PI} scale={0.5}/>
-              <primitive object={crystal_right_top.scene} rotation-y={-Math.PI} scale={0.5}/>
-              <primitive object={Ore_main.scene} rotation-y={-Math.PI} scale={0.5}/>
+          <pointLight position={[10, 10, 10]} />
+              <primitive object={crystal_center.scene} rotation-y={-Math.PI} scale={scale}/>
+              <primitive object={crystal_fly.scene} rotation-y={-Math.PI} scale={scale}/>
+              <primitive object={crystal_left_bottom.scene} rotation-y={-Math.PI} scale={scale}/>
+              <primitive object={crystal_left_top.scene} rotation-y={-Math.PI} scale={scale}/>
+              <primitive object={crystal_right_bottom.scene} rotation-y={-Math.PI} scale={scale}/>
+              <primitive object={crystal_right_top.scene} rotation-y={-Math.PI} scale={scale}/>
+              <primitive object={Ore_main.scene} rotation-y={-Math.PI} scale={scale}/>
             {/* <OrbitControls autoRotate enableZoom={false} enablePan={false} minPolarAngle={Math.PI / 2.8} maxPolarAngle={Math.PI / 2.8} addEventListener={false} hasEventListener={false} removeEventListener={false} dispatchEvent={false} /> */}
-
-        </Canvas>
-        <div>
-          <button>Claim</button>
-          <button>Evolve</button>
+          </Canvas> 
+        </div>
+      
+        <div className={styles['button-container']}>
+          <div className={styles['button']} style={{ height:"48px", width: "115px", backgroundImage: `url("./bigger-hl.png")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', color: 'white'}} >
+            Claim
+          </div>
+          <div className={styles['button']} style={{ height:"48px", width: "115px", backgroundImage: `url("./smaller.png")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', color: 'white'}}>
+            Evolve
+          </div>
         </div>
       </div>
     </>
