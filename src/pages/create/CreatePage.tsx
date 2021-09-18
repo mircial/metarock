@@ -6,13 +6,20 @@ import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useGLTF, Environment, Stage, OrbitControls } from '@react-three/drei'
 
-
-
 export const CreatePage: React.FC = () => {
   
   // const {rotate_x, setrotatex } = useState(-Math.PI / 2)
-  const ref=useRef()
+  // const ref=useRef()
 
+  // 接收一个 web3 addresss:
+  const address = "0xbC108A8Cc826784dC2F98003392180d1ac9EAa9b"
+  // 分片
+  const color01 = parseInt(address.slice(2,8),16)
+  const color02 = parseInt(address.slice(8,14),16)
+  const color03 = parseInt(address.slice(14,20),16)
+  const color04 = parseInt(address.slice(20,26),16)
+  const color05 = parseInt(address.slice(26,32),16)
+  // load 模型
   const crystal_center = useLoader(GLTFLoader, './forWeb/crystal_center.gltf')
   const crystal_fly = useLoader(GLTFLoader, './forWeb/crystal_fly.gltf')
   const crystal_left_bottom = useLoader(GLTFLoader, './forWeb/crystal_left_bottom.gltf')
@@ -20,6 +27,33 @@ export const CreatePage: React.FC = () => {
   const crystal_right_bottom = useLoader(GLTFLoader, './forWeb/crystal_right_bottom.gltf')
   const crystal_right_top = useLoader(GLTFLoader, './forWeb/crystal_right_top.gltf')
   const Ore_main = useLoader(GLTFLoader, './forWeb/Ore_main.gltf')
+
+  // const model = crystal_left_bottom.scene
+  var newMaterial01 = new THREE.MeshStandardMaterial({color: color01});
+  crystal_fly.scene.traverse((o) => {
+    if (o.isMesh) o.material = newMaterial01;
+  });
+
+  var newMaterial02 = new THREE.MeshStandardMaterial({color: color02});
+  crystal_left_bottom.scene.traverse((o) => {
+    if (o.isMesh) o.material = newMaterial02;
+  });
+  
+  var newMaterial03 = new THREE.MeshStandardMaterial({color: color03});
+  crystal_left_top.scene.traverse((o) => {
+    if (o.isMesh) o.material = newMaterial03;
+  });
+
+  var newMaterial04 = new THREE.MeshStandardMaterial({color: color04});
+  crystal_right_bottom.scene.traverse((o) => {
+    if (o.isMesh) o.material = newMaterial04;
+  });
+
+  var newMaterial05 = new THREE.MeshStandardMaterial({color: color05});
+  crystal_right_top.scene.traverse((o) => {
+    if (o.isMesh) o.material = newMaterial05;
+  });
+
 
   // useFrame((state, delta) => ((ref.current as THREE.Scene).rotation.x += 0.01))
   /**
