@@ -1,4 +1,4 @@
-import React,{Suspense, useRef} from "react";
+import React,{Suspense, useRef, useState} from "react";
 import styles from "./CreatePage.module.css";
 import {Header, Rock} from "../../components";
 import * as THREE from "three"
@@ -7,12 +7,18 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useGLTF, Environment, Stage, OrbitControls } from '@react-three/drei'
 
 export const CreatePage: React.FC = () => {
-  
   // const {rotate_x, setrotatex } = useState(-Math.PI / 2)
   // const ref=useRef()
 
   // 接收一个 web3 addresss:
-  const address = "0xbC108A8Cc826784dC2F98003392180d1ac9EAa9b"
+
+  const address0 = "0x0000000000000000000000000000000000000000"
+  const [address, setAdd] = useState(address0)
+  
+  // 检测 storage 更新 页面 add
+  if( address == address0 && localStorage.getItem("address")!=undefined) {
+    setAdd(localStorage.getItem("address") as string)
+  }
 
   // 分片
   const color01 = parseInt(address.slice(2,8),16)
@@ -70,6 +76,11 @@ export const CreatePage: React.FC = () => {
   /**
            
    */
+
+  const claimRock = () => {
+    
+  }
+
   return (
     <>
       <Header />
@@ -96,14 +107,14 @@ export const CreatePage: React.FC = () => {
         </div>
       
         <div className={styles['button-container']}>
-          <div className={styles['button']} style={{ height:"48px", width: "115px", backgroundImage: `url("./bigger-hl.png")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', color: 'white'}} >
+          <div className={styles['button']} style={{ height:"48px", width: "115px", backgroundImage: `url("./bigger-hl.png")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', color: 'white'}} onClick={claimRock} >
             Claim
           </div>
-          <div className={styles['button']} style={{ height:"48px", width: "115px", backgroundImage: `url("./smaller.png")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', color: 'white'}}>
+          <div className={styles['button']} style={{ height:"48px", width: "115px", backgroundImage: `url("./smaller.png")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', color: 'white'}}  >
             Evolve
           </div>
         </div>
-        <div>Meta Data: 0x {color01str} <span>{color02str}</span> {color03str} {color04str} {color05str} {color06str} </div>
+        <div className={styles['address-list']}><span style={{color: '#F08331'}}>Meta Data: </span> <span style={{color: '#ffffff'}}> 0x </span> <span style={{color: '#'+color01str}}>{color01str}</span> <span style={{color: '#'+color02str}}>{color02str}</span> <span style={{color: '#'+color03str}}>{color03str} </span> <span style={{color: '#'+color04str}}> {color04str}</span> <span style={{color: '#'+color05str}}> {color05str}</span> <span style={{color: '#'+color06str}}> {color06str}</span> </div>
       </div>
     </>
   );
