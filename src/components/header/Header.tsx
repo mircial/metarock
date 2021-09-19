@@ -8,6 +8,7 @@ declare let window: any;
 
 // nothing
 export const Header: React.FC = () => {
+
   const history = useHistory();
   const location = useLocation();
   const params = useParams();

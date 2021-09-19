@@ -239,9 +239,8 @@ export const CreatePage: React.FC = () => {
       if (error) {
         console.log(error);
       }
-  
       var account = accounts[0];
-  
+      console.log(account)
       myContract.methods.MintNft(item).call({from:account});//合约里的函数调用
   })
   }

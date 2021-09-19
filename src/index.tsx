@@ -5,7 +5,7 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={<div>Loading... </div>}>
+    <Suspense fallback={<div style={{color: "#FFFFFF"}}>Loading... </div>}>
       <App />
     </Suspense>
   </React.StrictMode>,

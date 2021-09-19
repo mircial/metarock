@@ -23,11 +23,11 @@ export const HomePage: React.FC = () => {
                 learn more
               </span>
               <div className={styles["bottom-link"]}>
-                <span onClick={()=>history.push("https://opensea.io/collection/metarocks")}>
+                <span onClick={()=>history.push("/opensea")}>
                   Opensea <img src='./Arrow.png'/></span>
-                <span onClick={()=>history.push("https://rarible.com")}>
+                <span onClick={()=>history.push("/rarible")}>
                   Rarible <img src='./Arrow.png'/></span> 
-                <span onClick={()=>history.push("https://etherscan.io/")} >
+                <span onClick={()=>history.push("/etherscan")} >
                   Etherscan <img src='./Arrow.png'/></span> 
               </div>
             </div>

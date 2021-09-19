@@ -13,6 +13,13 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/create" component={CreatePage} />
           <Route exact path="/evolve" component={EvolvePage} />
+          <Route path='/opensea' component={() => {
+            window.location.href = 'https://opensea.io/collection/metarocks'; return null;}}/>
+          <Route path='/rarible' component={() => {
+            window.location.href = 'https://rarible.com'; return null;}}/>
+          <Route path='/etherscan' component={() => {
+            window.location.href = 'https://etherscan.io'; return null;}}/>
+            
           <Route render={() => <h1>404 not found 页面去火星了 ！</h1>} />
         </Switch>
       </BrowserRouter>
