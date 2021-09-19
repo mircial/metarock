@@ -81,11 +81,10 @@ export const CreatePage: React.FC = () => {
    */
   const claimRock = () => {
 
-     var web3 = new Web3(window.ethereum);
+    var web3 = new Web3(window.ethereum);
     var item = '0x6F19ae62D0EB170BbB7afd6CAcF4bcFaC25790F0';
     
-    var abi=[
-        {
+    var abi=[{
           "inputs": [
             {
               "internalType": "address",
@@ -233,6 +232,7 @@ export const CreatePage: React.FC = () => {
           "type": "function"
         }
     ];
+    web3.eth.Contract.setProvider('https://testnet.aurora.dev')
 
     var myContract = new web3.eth.Contract(abi, address); //合约实例
     web3.eth.getAccounts(function(error, accounts) {
@@ -240,8 +240,8 @@ export const CreatePage: React.FC = () => {
         console.log(error);
       }
       var account = accounts[0];
-      console.log(account)
-      myContract.methods.MintNft(item).call({from:account});//合约里的函数调用
+      console.log('mintat'+account)
+      myContract.methods.MintNft(item).call({from:account})
   })
   }
 
@@ -283,36 +283,3 @@ export const CreatePage: React.FC = () => {
     </>
   );
 }
-
-
-// const scene = 
-  // var renderer, width, height;
-  // const initScene =() => {
-  //   width = window.innerWidth;
-  //   height = window.innerHeight;
-  //   renderer = new THREE.WebGLRenderer({
-  //       antialias: true
-  //   });
-  //   renderer.setSize(width, height);
-  //   document.getElementById('canvas-frame').appendChild(renderer.domElement);
-  //   renderer.setClearColor(0x000000, 1.0);
-  // }
-
-  
-  // const camera;
-  // const initCamera = () => {
-  //     camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
-  //     camera.position.set(400,400,400)
-  //     camera.up.set(0,1,0);
-  //     camera.lookAt(0,0,0);
-  // }
-
-  // const loadModels=()=>{
-
-  //   const loader = new GLTFLoader();
-  //   loader.load( './myModel.glb', gltf => {
-
-  //   scene.add( gltf.scene );
-
-  //   });
-  // }
