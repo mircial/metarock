@@ -5,6 +5,9 @@ import * as THREE from "three"
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useGLTF, Environment, Stage, OrbitControls } from '@react-three/drei'
+const Web3 = require("web3") 
+declare let window: any;
+
 
 export const CreatePage: React.FC = () => {
   // const {rotate_x, setrotatex } = useState(-Math.PI / 2)
@@ -76,9 +79,171 @@ export const CreatePage: React.FC = () => {
   /**
            
    */
-
   const claimRock = () => {
+
+     var web3 = new Web3(window.ethereum);
+    var item = '0x6F19ae62D0EB170BbB7afd6CAcF4bcFaC25790F0';
     
+    var abi=[
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_manager",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "item",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "applyer",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "Mint",
+          "type": "event"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "TokenProps",
+          "outputs": [
+            {
+              "internalType": "bytes3",
+              "name": "rock1_color",
+              "type": "bytes3"
+            },
+            {
+              "internalType": "bytes3",
+              "name": "rock2_color",
+              "type": "bytes3"
+            },
+            {
+              "internalType": "bytes3",
+              "name": "rock3_color",
+              "type": "bytes3"
+            },
+            {
+              "internalType": "bytes3",
+              "name": "rock4_color",
+              "type": "bytes3"
+            },
+            {
+              "internalType": "bytes3",
+              "name": "rock5_color",
+              "type": "bytes3"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [],
+          "name": "manager",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [],
+          "name": "tokenId",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes3",
+              "name": "rock1_color",
+              "type": "bytes3"
+            }
+          ],
+          "name": "RecordCurrentTokenProps",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "contract INFTChallegeCore",
+              "name": "item",
+              "type": "address"
+            }
+          ],
+          "name": "MintNft",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+    ];
+
+    var myContract = new web3.eth.Contract(abi, address); //合约实例
+    web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+  
+      var account = accounts[0];
+  
+      myContract.methods.MintNft(item).call({from:account});//合约里的函数调用
+  })
   }
 
   return (
