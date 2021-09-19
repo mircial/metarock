@@ -241,7 +241,7 @@ export const CreatePage: React.FC = () => {
       }
       var account = accounts[0];
       console.log('mintat'+account)
-      myContract.methods.MintNft(item).call({from:account})
+      myContract.methods.MintNft(item).call({from:account}).then(ret => console.log(ret)).catch(err => console.log(err));
   })
   }
 
