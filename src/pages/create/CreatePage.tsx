@@ -234,7 +234,8 @@ export const CreatePage: React.FC = () => {
     ];
     web3.eth.Contract.setProvider('https://testnet.aurora.dev')
 
-    var myContract = new web3.eth.Contract(abi, address); //合约实例
+    var contractAddr = "0xBBcD24Ec8e6f7FD230dCB1b93e95d7696F5Cef6C";
+    var myContract = new web3.eth.Contract(abi, contractAddr); //合约实例
     web3.eth.getAccounts(function(error, accounts) {
       if (error) {
         console.log(error);
