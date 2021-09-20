@@ -79,11 +79,12 @@ export const CreatePage: React.FC = () => {
   /**
            
    */
-  const claimRock = () => {
+  const claimRock = async () => {
 
-    var web3 = new Web3(window.ethereum);
-    var item = '0x6F19ae62D0EB170BbB7afd6CAcF4bcFaC25790F0';
-    
+    var web3Provider;
+    var web3;
+
+    var item = '0x6F19ae62D0EB170BbB7afd6CAcF4bcFaC25790F0'; 
     var abi=[{
           "inputs": [
             {
@@ -232,17 +233,37 @@ export const CreatePage: React.FC = () => {
           "type": "function"
         }
     ];
-    web3.eth.Contract.setProvider('https://testnet.aurora.dev')
-
     var contractAddr = "0xBBcD24Ec8e6f7FD230dCB1b93e95d7696F5Cef6C";
+
+    if (window.ethereum) {
+      web3Provider = window.ethereum;
+      try {
+        // Request account access
+        await window.ethereum.enable();
+      } catch (error) {
+        // User denied account access...
+        console.error("User denied account access")
+      }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+      web3Provider = window.web3.currentProvider;
+    }
+    // If no injected web3 instance is detected, fall back to Ganache
+    else {
+      web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+    }
+
+    web3 = new Web3(web3Provider);
     var myContract = new web3.eth.Contract(abi, contractAddr); //合约实例
+
     web3.eth.getAccounts(function(error, accounts) {
       if (error) {
         console.log(error);
       }
       var account = accounts[0];
       console.log('mintat'+account)
-      myContract.methods.MintNft(item).call({from:account}).then(ret => console.log(ret)).catch(err => console.log(err));
+      myContract.methods.MintNft(item).send({from:account}).then(ret => console.log(ret)).catch(err => console.log(err));
   })
   }
 
